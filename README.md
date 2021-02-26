@@ -14,6 +14,7 @@ O Back-end é feito em javascript - composto pela biblioteca do Node.js, utiliza
 ### FRONT-END:
       [X] Adição das bibliotecas no projeto
       [ ] Adição dos "Robôs" no projeto
+      [ ] Movimento dos Robôs
       [ ] Desenvolvimento dos robos
       [ ] Criação do ambiente virtual
       [ ] Movimento dos robôs      
