@@ -4,7 +4,7 @@ Projeto criado em parceria com o setor de artes, o qual se constitui de Front-en
 O Front-end é feito em javascript - composto pela biblioteca do P5.js.
 O Back-end é feito em javascript - composto pela biblioteca do Node.js, utilizando express e socket.io como websocket.
 
-### ANDAMENTO:
+## ANDAMENTO:
 ### - [] [Front-end]
 
     - [] [Desenvolvimento dos robos]
