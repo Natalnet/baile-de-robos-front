@@ -5,7 +5,7 @@ O Front-end é feito em javascript - composto pela biblioteca do P5.js.
 O Back-end é feito em javascript - composto pela biblioteca do Node.js, utilizando express e socket.io como websocket.
 
 ## BIBLIOTECAS:
-      - P5.JS
+   - P5.JS
 
 
 ## ANDAMENTO:
