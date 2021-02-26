@@ -6,7 +6,7 @@ O Back-end é feito em javascript - composto pela biblioteca do Node.js, utiliza
 
 ## ANDAMENTO:
 ### FRONT-END
-- [x] Finish my changes
-- [ ] Push my commits to GitHub
-- [ ] Open a pull request
+    - [x] Finish my changes
+    - [ ] Push my commits to GitHub
+    - [ ] Open a pull request
     
