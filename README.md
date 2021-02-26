@@ -5,8 +5,16 @@ O Front-end é feito em javascript - composto pela biblioteca do P5.js.
 O Back-end é feito em javascript - composto pela biblioteca do Node.js, utilizando express e socket.io como websocket.
 
 ## ANDAMENTO:
-### FRONT-END
-   [x] Finish my changes
-   [ ] Push my commits to GitHub
-   [ ] Open a pull request
-    
+### FRONT-END:
+      [ ] Desenvolvimento dos robos
+      [ ] Criação do ambiente virtual
+      [ ] Movimento dos robôs
+      [ ] Adição das bibliotecas no projeto
+      
+      
+### BACK-END:
+      [ ] Desenvolvimento do server
+      [ ] Receptação dos dados dos clients
+      [ ] Envio dos dados para os clients
+      [ ] Comunicação entre server-clients completa
+      
