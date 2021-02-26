@@ -6,14 +6,17 @@ O Back-end é feito em javascript - composto pela biblioteca do Node.js, utiliza
 
 ## BIBLIOTECAS:
    - P5.JS
+   - NODE.JS
+   - SOCKET.IO
 
 
 ## ANDAMENTO:
 ### FRONT-END:
+      [X] Adição das bibliotecas no projeto
+      [X] Adição dos "Robôs" no projeto
       [ ] Desenvolvimento dos robos
       [ ] Criação do ambiente virtual
-      [ ] Movimento dos robôs
-      [X] Adição das bibliotecas no projeto
+      [ ] Movimento dos robôs      
       
       
 ### BACK-END:
