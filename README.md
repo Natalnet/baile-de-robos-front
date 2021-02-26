@@ -6,5 +6,5 @@ O Back-end é feito em javascript - composto pela biblioteca do Node.js, utiliza
 
 ## ANDAMENTO:
 ### FRONT-END
-    - [X] [Desenvolvimento dos robos]
+    - [x] [Desenvolvimento dos robos]
 
