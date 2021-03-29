@@ -22,7 +22,7 @@ function newConnection(socket){
     
   function cordenada(total){      
       
-     pessoas[socket.id]={
+     pessoas[socket.id]={ //adiciona num objeto as coordenadas de todos os "players"
        x:total.x,
        y:total.y
      }
