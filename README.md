@@ -14,9 +14,9 @@ O Back-end é feito em javascript - composto pela biblioteca do Node.js, utiliza
 ### FRONT-END:
       [X] Adição das bibliotecas no projeto
       [X] Adição dos "Robôs" no projeto
-      [ ] Detectar ambiente
-      [ ] Movimento no celular
+      [X] Movimento no celular
       [ ] Movimento dos Robôs
+      [ ] "IA" para movimento dos robos
       [ ] Desenvolvimento dos robôs
       [ ] Criação do ambiente virtual
       [ ] Movimento dos robôs      
@@ -27,4 +27,13 @@ O Back-end é feito em javascript - composto pela biblioteca do Node.js, utiliza
       [ ] Receptação dos dados dos clients
       [ ] Envio dos dados para os clients
       [ ] Comunicação entre server-clients completa
+      
+      
+### OUTROS:
+      [ ] Colocar codigo back-end no servidor
+      [ ]
+      
+            
+### BASICOS *SOMENTE PARA CHECKLIST DE PROGRESSO*
+     - 
       
