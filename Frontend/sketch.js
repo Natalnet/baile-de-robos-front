@@ -14,8 +14,6 @@ let verdfalse = {}
 let velocidade = 2
 let qtdrobo = 10
 let tamanhorobo = 50
-
-
 let x = 0;
 let y = 0;
 let angulo=0;
