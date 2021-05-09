@@ -20,6 +20,7 @@ let angulo=0;
 let seilax
 let seilay
 let rgb = {}
+let pessoas
 
 
 function preload() {
@@ -168,38 +169,56 @@ function setup() {
     }
   ]
   rgb = {
-    r: random(1,255),
-    g: random(1,255),
-    b: random(1,255)
+    r: parseInt(random(1,255)),
+    g: parseInt(random(1,255)),
+    b: parseInt(random(1,255)),
   }
 }
 
-function robo(total){
-  movimentos = total
-  size = Object.keys(total).length;
-  delete player[socket.id]
+function robo(pessoas){
+  movimentos = pessoas  
+  delete pessoas[socket.id]
+  size = Object.keys(pessoas).length;
 }
 
 function draw() { 
-  rectMode(RADIUS);
-  imageMode(CENTER);
-  background(220);
-  tint(rgb.r,rgb.g,rgb.b)
-  image(img,clientx,clienty,tamanhorobo,tamanhorobo)
-  if (keyIsPressed === true) {
-    if (keyCode === UP_ARROW) {
-      clienty--
-    }else if (keyCode === DOWN_ARROW) {
-      clienty++
-    }else if (keyCode === LEFT_ARROW) {
-      clientx--
-    }else if (keyCode === RIGHT_ARROW) {
-      clientx++
-    }
-  }
-
-  noTint()
   if(forceX === 0 && forceY === 0){
+    rectMode(RADIUS);
+    imageMode(CENTER);
+    background(220);
+    tint(rgb.r,rgb.g,rgb.b)
+    image(img,clientx,clienty,tamanhorobo,tamanhorobo)
+    noTint()
+    total = {
+      x: clientx,
+      y: clienty,
+      corr: rgb.r,
+      corg: rgb.g,  
+      corb: rgb.b
+    }
+    socket.emit('coordenadas', total)
+    if (keyIsPressed === true) {
+      if (keyCode === UP_ARROW) {
+        clienty--
+      }else if (keyCode === DOWN_ARROW) {
+        clienty++
+      }else if (keyCode === LEFT_ARROW) {
+        clientx--
+      }else if (keyCode === RIGHT_ARROW) {
+        clientx++
+      }
+    }
+    
+    for(let i=0;i<size;i++){
+      variavel = movimentos[Object.keys(movimentos)[i]]
+      tint(variavel.r,variavel.g,variavel.b)
+      image(img,variavel.x,variavel.y,tamanhorobo,tamanhorobo)
+      noTint()
+    } 
+    
+  
+    
+    
     for(let j=0;j<qtdrobo;j++){
       image(img,robos[j].x,robos[j].y,tamanhorobo,tamanhorobo);
     }
@@ -233,8 +252,6 @@ function draw() {
         if(distancia < 35 && distancia != 0){
           //destinorobos[k].x = random(0,windowWidth-40)
           //destinorobos[k].y = random(0,windowHeight-40)
-          console.log(distancia)
-          console.log("bateu")
         
         
           destinorobos[m].x = random(0,windowWidth-40)
@@ -250,8 +267,11 @@ function draw() {
   }else{   
     total = {
       x: forceX,
-      y: forceY    
-    } 
+      y: forceY,
+      corr: rgb.r,
+      corg: rgb.g,  
+      corb: rgb.b
+    }
     socket.emit('coordenadas', total)
   }
 }
