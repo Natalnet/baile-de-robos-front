@@ -8,7 +8,6 @@ io.sockets.on('connection', newConnection);
 var pessoas = {}
 
 
-
 function newConnection(socket){
   console.log('Nova conexão ' + socket.id); 
   socket.on('coordenadas', cordenada);    
@@ -16,15 +15,14 @@ function newConnection(socket){
     socket.on('disconnect', () => {      
       delete pessoas[socket.id]
       console.log(pessoas)
-    });
-    
+    });    
   
-function cordenada(total){      
-     pessoas[socket.id]={
-       x:total.x,
-       y:total.y
-     }      
+    function cordenada(total){      
+      pessoas[socket.id]={
+        x:total.x,
+        y:total.y
+      }        
       console.log(pessoas)
-      socket.broadcast.emit("coordenadas", pessoas); 
+      socket.emit("coordenadas", pessoas); 
     }  
 }

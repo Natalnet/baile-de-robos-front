@@ -1,7 +1,7 @@
 let robox = 100
 let roboy = 100
-var forceX = 0;
-var forceY = 0;
+let forceX = 0;
+let forceY = 0;
 let teste = 1;
 let teste1 = 0;
 let movimentos = {}
@@ -22,7 +22,7 @@ let seilay
 
 
 function preload() {
-   img = loadImage('robo.png');
+  img = loadImage('robo.png');
 }
 
 
@@ -37,9 +37,6 @@ function setup() {
         forceX = o.gamma/50;
         forceY = o.beta/50;
     });
-
-
-
 
   verdfalse = [
     robo1 = {
@@ -83,7 +80,6 @@ function setup() {
       y: false
     },
   ]
-
   destinorobos = [
     robo1 = {
       x: random(0,windowWidth-40),
@@ -128,7 +124,6 @@ function setup() {
   
 
   ]
-
   robos =  [
     robo1 = {
       x: random(0,windowWidth-40),
@@ -171,124 +166,68 @@ function setup() {
       y: random(0,windowHeight-40)
     }
   ]
-
-
 }
-
 
 function robo(total){
   movimentos = total
   size = Object.keys(total).length;
+  delete player[socket.id]
 }
-
-
-
 
 function draw() { 
   if(forceX === 0 && forceY === 0){
-  rectMode(RADIUS);
-  imageMode(CENTER);
-  //translate(x,y);
-  background(220);
-  //rotate(angulo);
-  
-
-    
+    rectMode(RADIUS);
+    imageMode(CENTER);
+    background(220);   
 
 
-  for(let j=0;j<qtdrobo;j++){
-    image(img,robos[j].x,robos[j].y,tamanhorobo,tamanhorobo);
-  }
-
-
-  for(let k = 0;k<qtdrobo;k++){
-    if(robos[k].x + 1<destinorobos[k].x){
-      robos[k].x = robos[k].x + 1
-    }else if(robos[k].x-1>destinorobos[k].x){
-      robos[k].x = robos[k].x - 1
-    }else{
-      verdfalse[k].x = true
+    for(let j=0;j<qtdrobo;j++){
+      image(img,robos[j].x,robos[j].y,tamanhorobo,tamanhorobo);
     }
 
-    if(robos[k].y + 1<destinorobos[k].y){
-      robos[k].y = robos[k].y + 1
-    }else if(robos[k].y>destinorobos[k].y){
-      robos[k].y = robos[k].y - 1
-    }else{
-      verdfalse[k].y = true
-    }
-    if(verdfalse[k].x == true && verdfalse[k].y == true){
-      destinorobos[k].x = random(0,windowWidth-40)
-      destinorobos[k].y = random(0,windowHeight-40)
-      verdfalse[k].x = false
-      verdfalse[k].y = false
-    }
 
-    for(let m=0;m<qtdrobo;m++){
-      distancia = dist(robos[k].x,robos[k].y,robos[m].x,robos[m].y)
-      if(distancia < 35 && distancia != 0){
-        //destinorobos[k].x = random(0,windowWidth-40)
-        //destinorobos[k].y = random(0,windowHeight-40)
-        console.log(distancia)
-        console.log("bateu")
-      
-      
-        destinorobos[m].x = random(0,windowWidth-40)
-        destinorobos[m].y = random(0,windowHeight-40)
-        //destinorobos[k].x = random(0,windowWidth-40)
-        //destinorobos[k].y = random(0,windowHeight-40)
+    for(let k = 0;k<qtdrobo;k++){
+      if(robos[k].x + 1<destinorobos[k].x){
+        robos[k].x = robos[k].x + 1
+      }else if(robos[k].x-1>destinorobos[k].x){
+        robos[k].x = robos[k].x - 1
+      }else{
+        verdfalse[k].x = true
+      }
+
+      if(robos[k].y + 1<destinorobos[k].y){
+        robos[k].y = robos[k].y + 1
+      }else if(robos[k].y>destinorobos[k].y){
+        robos[k].y = robos[k].y - 1
+      }else{
+        verdfalse[k].y = true
+      }
+      if(verdfalse[k].x == true && verdfalse[k].y == true){
+        destinorobos[k].x = random(0,windowWidth-40)
+        destinorobos[k].y = random(0,windowHeight-40)
+        verdfalse[k].x = false
+        verdfalse[k].y = false
+      }
+
+      for(let m=0;m<qtdrobo;m++){
+        distancia = dist(robos[k].x,robos[k].y,robos[m].x,robos[m].y)
+        if(distancia < 35 && distancia != 0){
+          //destinorobos[k].x = random(0,windowWidth-40)
+          //destinorobos[k].y = random(0,windowHeight-40)
+          console.log(distancia)
+          console.log("bateu")
+        
+        
+          destinorobos[m].x = random(0,windowWidth-40)
+          destinorobos[m].y = random(0,windowHeight-40)
+          //destinorobos[k].x = random(0,windowWidth-40)
+          //destinorobos[k].y = random(0,windowHeight-40)
+        }
       }
     }
-  }
-
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- 
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-  
-  
-  
-  
-  
-  
-
-
-
-
-
- 
-    
-
+      
+  //TELEFONE  
   }else{   
     total = {
       x: forceX,
