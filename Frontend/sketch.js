@@ -199,13 +199,13 @@ function draw() {
     socket.emit('coordenadas', total)
     if (keyIsPressed === true) {
       if (keyCode === UP_ARROW) {
-        clienty--
+        clienty= clienty - 2
       }else if (keyCode === DOWN_ARROW) {
-        clienty++
+        clienty= clienty + 2
       }else if (keyCode === LEFT_ARROW) {
-        clientx--
+        clientx= clientx - 2
       }else if (keyCode === RIGHT_ARROW) {
-        clientx++
+        clientx= clientx + 2
       }
     }
     
@@ -214,6 +214,20 @@ function draw() {
       tint(variavel.r,variavel.g,variavel.b)
       image(img,variavel.x,variavel.y,tamanhorobo,tamanhorobo)
       noTint()
+      console.log(i)
+      
+      for(j=0;j<qtdrobo;j++){
+        distancia1 = dist(robos[j].x,robos[j].y,total.x,total.y)
+        if(distancia1 == 0 || distancia1 == 1){          
+        }else if (distancia1 < 35){
+          destinorobos[j].x = random(0,windowWidth)
+          destinorobos[j].y = random(0,windowHeight-60)
+        }else{
+          console.log(distancia1)
+        }
+        
+      }
+
     } 
     
   
@@ -254,8 +268,8 @@ function draw() {
           //destinorobos[k].y = random(0,windowHeight-40)
         
         
-          destinorobos[m].x = random(0,windowWidth-40)
-          destinorobos[m].y = random(0,windowHeight-40)
+          destinorobos[m].x = random(0,windowWidth)
+          destinorobos[m].y = random(0,windowHeight-60)
           //destinorobos[k].x = random(0,windowWidth-40)
           //destinorobos[k].y = random(0,windowHeight-40)
         }
