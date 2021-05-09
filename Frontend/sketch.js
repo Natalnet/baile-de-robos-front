@@ -214,7 +214,7 @@ function draw() {
       tint(variavel.r,variavel.g,variavel.b)
       image(img,variavel.x,variavel.y,tamanhorobo,tamanhorobo)
       noTint()
-      console.log(i)
+      console.log(variavel)
       
       for(j=0;j<qtdrobo;j++){
         distancia1 = dist(robos[j].x,robos[j].y,total.x,total.y)
@@ -222,8 +222,6 @@ function draw() {
         }else if (distancia1 < 35){
           destinorobos[j].x = random(0,windowWidth)
           destinorobos[j].y = random(0,windowHeight-60)
-        }else{
-          console.log(distancia1)
         }
         
       }
