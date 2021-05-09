@@ -14,11 +14,12 @@ let verdfalse = {}
 let velocidade = 2
 let qtdrobo = 10
 let tamanhorobo = 50
-let x = 0;
-let y = 0;
+let clientx = 50;
+let clienty = 50;
 let angulo=0;
 let seilax
 let seilay
+let rgb = {}
 
 
 function preload() {
@@ -166,6 +167,11 @@ function setup() {
       y: random(0,windowHeight-40)
     }
   ]
+  rgb = {
+    r: random(1,255),
+    g: random(1,255),
+    b: random(1,255)
+  }
 }
 
 function robo(total){
@@ -175,12 +181,25 @@ function robo(total){
 }
 
 function draw() { 
+  rectMode(RADIUS);
+  imageMode(CENTER);
+  background(220);
+  tint(rgb.r,rgb.g,rgb.b)
+  image(img,clientx,clienty,tamanhorobo,tamanhorobo)
+  if (keyIsPressed === true) {
+    if (keyCode === UP_ARROW) {
+      clienty--
+    }else if (keyCode === DOWN_ARROW) {
+      clienty++
+    }else if (keyCode === LEFT_ARROW) {
+      clientx--
+    }else if (keyCode === RIGHT_ARROW) {
+      clientx++
+    }
+  }
+
+  noTint()
   if(forceX === 0 && forceY === 0){
-    rectMode(RADIUS);
-    imageMode(CENTER);
-    background(220);   
-
-
     for(let j=0;j<qtdrobo;j++){
       image(img,robos[j].x,robos[j].y,tamanhorobo,tamanhorobo);
     }
@@ -235,7 +254,6 @@ function draw() {
     } 
     socket.emit('coordenadas', total)
   }
-
 }
 
 
