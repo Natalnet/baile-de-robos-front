@@ -3,7 +3,7 @@ var app = express();
 var porta = 3000
 var server = app.listen(porta);
 var socket = require('socket.io');
-var io = socket(server);
+var io = require('socket.io').listen(server);
 io.sockets.on('connection', newConnection);
 var pessoas = {}
 console.log('servidor rodando na porta ' + porta)
