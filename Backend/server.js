@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var porta = 3000
+var porta = 80
 var server = app.listen(porta);
 var socket = require('socket.io');
 var io = socket(server);
