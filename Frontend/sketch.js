@@ -35,7 +35,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //Conexão com o servidor
-  socket = io.connect('159.89.91.202:3000')
+  socket = io.connect('https://159.89.91.202:3000')
   socket.on('coordenadas', robo);
   //giroscopio
   gyro.frequency = 10; 
@@ -179,46 +179,6 @@ function setup() {
   }
 
 
-
-
-
-  if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
-      // ios 13 device
-      
-      DeviceOrientationEvent.requestPermission()
-        .catch(() => {
-          // show permission dialog only the first time
-          let button = createButton("click to allow access to sensors");
-          button.style("font-size", "24px");
-          button.center();
-          button.mousePressed( requestAccess );
-          throw error;
-        })
-        .then(() => {
-          // on any subsequent visits
-          permissionGranted = true;
-        })
-  } else {
-      // non ios 13 device
-      textSize(48);
-      // text("non ios 13 device", 100, 100);
-      permissionGranted = true;
-  }
-
-}
-
-function requestAccess() {
-  DeviceOrientationEvent.requestPermission()
-    .then(response => {
-      if (response == 'granted') {
-        permissionGranted = true;
-      } else {
-        permissionGranted = false;
-      }
-    })
-  .catch(console.error);
-  
-  this.remove();
 }
 
 function robo(pessoas){
@@ -324,7 +284,6 @@ function draw() {
       
   //TELEFONE  
   }else{
-    if (!permissionGranted) return;
     velox = parseFloat(forceX.toFixed(2))
     veloy = parseFloat(forceY.toFixed(2))
     if(veloy > 0.04){
@@ -349,7 +308,6 @@ function draw() {
     circle(windowWidth/2+velox*100,windowHeight/2+veloy*100,100)
 
  
-
 
     total = {
       x: xcel,
