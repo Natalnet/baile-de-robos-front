@@ -9,12 +9,12 @@ var pessoas = {}
 console.log('servidor rodando na porta ' + porta)
 
 function newConnection(socket){
-//   console.log('Nova conexão ' + socket.id); 
+  console.log('Nova conexão ' + socket.id); 
   socket.on('coordenadas', cordenada);    
   
     socket.on('disconnect', () => {      
       delete pessoas[socket.id]
-//       console.log(pessoas)
+       console.log(pessoas)
     });    
   
     function cordenada(total){      
@@ -22,7 +22,7 @@ function newConnection(socket){
         x:total.x,
         y:total.y
       }        
-//       console.log(pessoas)
+      console.log(pessoas)
       socket.emit("coordenadas", pessoas); 
     }  
 }
