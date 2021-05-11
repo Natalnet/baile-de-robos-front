@@ -35,7 +35,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //Conexão com o servidor
-  socket = io.connect('159.89.91.202:3000')
+  socket = io.connect('https://159.89.91.202:3000')
   socket.on('coordenadas', robo);
   //giroscopio
   gyro.frequency = 10; 
