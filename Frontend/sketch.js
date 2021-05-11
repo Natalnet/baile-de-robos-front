@@ -25,6 +25,8 @@ let xcel = 50
 let ycel = 50
 
 
+let permissionGranted = false
+
 function preload() {
   img = loadImage('robo.png');
 }
@@ -175,6 +177,48 @@ function setup() {
     g: parseInt(random(1,255)),
     b: parseInt(random(1,255)),
   }
+
+
+
+
+
+  if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
+      // ios 13 device
+      
+      DeviceOrientationEvent.requestPermission()
+        .catch(() => {
+          // show permission dialog only the first time
+          let button = createButton("click to allow access to sensors");
+          button.style("font-size", "24px");
+          button.center();
+          button.mousePressed( requestAccess );
+          throw error;
+        })
+        .then(() => {
+          // on any subsequent visits
+          permissionGranted = true;
+        })
+  } else {
+      // non ios 13 device
+      textSize(48);
+      // text("non ios 13 device", 100, 100);
+      permissionGranted = true;
+  }
+
+}
+
+function requestAccess() {
+  DeviceOrientationEvent.requestPermission()
+    .then(response => {
+      if (response == 'granted') {
+        permissionGranted = true;
+      } else {
+        permissionGranted = false;
+      }
+    })
+  .catch(console.error);
+  
+  this.remove();
 }
 
 function robo(pessoas){
@@ -182,6 +226,13 @@ function robo(pessoas){
   delete pessoas[socket.id]
   size = Object.keys(pessoas).length;
 }
+
+
+
+
+
+
+
 
 function draw() { 
   if(forceX === 0 && forceY === 0){
@@ -273,6 +324,7 @@ function draw() {
       
   //TELEFONE  
   }else{
+    if (!permissionGranted) return;
     velox = parseFloat(forceX.toFixed(2))
     veloy = parseFloat(forceY.toFixed(2))
     if(veloy > 0.04){
