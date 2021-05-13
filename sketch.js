@@ -35,7 +35,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //Conexão com o servidor
-  socket = io.connect('https://159.89.91.202:3000')
+  socket = io.connect('https://back-2.mateusvgarcia.repl.co')
   socket.on('coordenadas', robo);
   //giroscopio
   gyro.frequency = 10; 
