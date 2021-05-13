@@ -9,7 +9,6 @@ O Back-end é feito em javascript - composto pela biblioteca do Node.js, utiliza
    - NODE.JS
    - SOCKET.IO
 
-
 ## ANDAMENTO:
 ### FRONT-END:
       [X] Adição das bibliotecas no projeto
