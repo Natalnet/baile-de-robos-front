@@ -31,7 +31,6 @@ function preload() {
   img = loadImage('robo.png');
 }
 
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //Conexão com o servidor
