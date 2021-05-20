@@ -23,12 +23,12 @@ let rgb = {}
 let pessoas
 let xcel = 50
 let ycel = 50
-
-
+let batida
 let permissionGranted = false
 
 function preload() {
   img = loadImage('robo.png');
+  batida = createAudio('batida.wav')
 }
 
 function setup() {
@@ -37,7 +37,7 @@ function setup() {
   socket = io.connect('https://back-2.mateusvgarcia.repl.co')
   socket.on('coordenadas', robo);
   //giroscopio
-  gyro.frequency = 10; 
+  gyro.frequency = 10;
   gyro.startTracking(function(o) {
         forceX = o.gamma/50;
         forceY = o.beta/50;
@@ -226,7 +226,6 @@ function draw() {
       tint(variavel.r,variavel.g,variavel.b)
       image(img,variavel.x,variavel.y,tamanhorobo,tamanhorobo)
       noTint()
-      console.log(variavel)
       
       for(j=0;j<qtdrobo;j++){
         distancia1 = dist(robos[j].x,robos[j].y,total.x,total.y)
@@ -275,6 +274,8 @@ function draw() {
         distancia = dist(robos[k].x,robos[k].y,robos[m].x,robos[m].y)
         if(distancia < 35 && distancia != 0){        
           destinorobos[m].x = random(0,windowWidth)
+          batida.play()
+          batida.volume(0.15)
           destinorobos[m].y = random(0,windowHeight-60)
         }
       }
