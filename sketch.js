@@ -24,6 +24,8 @@ let pessoas
 let xcel = 50
 let ycel = 50
 let batida
+
+
 let permissionGranted = false
 
 function preload() {
@@ -223,7 +225,7 @@ function draw() {
     
     for(let i=0;i<size;i++){
       variavel = movimentos[Object.keys(movimentos)[i]]
-      tint(variavel.r,variavel.g,variavel.b)
+      fill(variavel.r,variavel.g,variavel.b)
       image(img,variavel.x,variavel.y,tamanhorobo,tamanhorobo)
       noTint()
       
