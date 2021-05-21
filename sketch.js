@@ -233,8 +233,6 @@ function draw() {
         }else if (distancia1 < 35){
           destinorobos[j].x = random(0,windowWidth)
           destinorobos[j].y = random(0,windowHeight-60)
-          batida.play()
-          batida.volume(0.15)
         }
         
       }
