@@ -26,8 +26,6 @@ let ycel = 50
 let batida
 
 
-let permissionGranted = false
-
 function preload() {
   img = loadImage('robo.png');
   batida = createAudio('batida.wav')
