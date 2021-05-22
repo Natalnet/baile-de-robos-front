@@ -32,16 +32,27 @@ let flagsizex = 40
 let flagsizey = 30
 let trigger = true
 let trigger1 = false
+let musicanum
+let trigger2 = true
 
 function preload() {
   img = loadImage('robo.png');
   batida = createAudio('batida.wav')
+
+  musica1 = createAudio('musica1.wav')
+  musica2 = createAudio('musica2.wav')
+  musica3 = createAudio('musica3.wav')
+
+
   robotstart = createAudio('robotstart.wav')
   robotstart.onended(sayDone);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+
+
   brasil = createImg('brasil.png')
   brasil.position(windowWidth/2 - 180, windowHeight/2)
   brasil.size(flagsizex,flagsizey)
@@ -209,8 +220,6 @@ function setup() {
     g: parseInt(random(1,255)),
     b: parseInt(random(1,255)),
   }
-
-
 }
 
 function robo(pessoas){
@@ -238,7 +247,6 @@ function draw() {
         background: `#a5f3e5`,
         confirmButtonText: messagebutton
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           trigger1 = true
         }
@@ -333,7 +341,7 @@ function draw() {
               if (distancia < 35 && distancia != 0) {
                 destinorobos[m].x = random(0, windowWidth)
                 batida.play()
-                batida.volume(0.15)
+                batida.volume(0.08)
                 destinorobos[m].y = random(0, windowHeight - 60)
                 destinorobos[k].y = random(0, windowHeight - 60)
               }
@@ -410,6 +418,24 @@ function windowResized() {
 
 function sayDone(robotstart) {
   start = true
+  if(trigger2){
+    musicanum = parseInt(random(1,3))
+    console.log(musicanum)
+    if(musicanum == 1){
+      musica1.play()
+      musica1.volume(0.2)
+      musica1.loop()
+    }else if(musicanum == 2){
+      musica2.play()
+      musica2.volume(0.2)
+      musica2.loop()
+    }else if(musicanum == 3) {
+      musica3.play()
+      musica3.volume(0.2)
+      musica3.loop()
+    }
+    trigger2 = false
+  }
 }
 
 function messagefr() {
