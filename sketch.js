@@ -1,34 +1,32 @@
-let robox = 100
-let roboy = 100
 let forceX = 0;
 let forceY = 0;
 let teste = 1;
-let teste1 = 0;
 let movimentos = {}
 let socket
 let size
 let robo1 = {}
 let robos = {}
-let destinorobo1 = {}
 let verdfalse = {}
 let velocidade = 1
 let qtdrobo = 10
 let tamanhorobo = 50
 let clientx = 50;
 let clienty = 50;
-let angulo=0;
 let seilax
 let seilay
 let rgb = {}
-let pessoas
 let xcel = 50
 let ycel = 50
 let batida
+let start = false
+let robotstart
 
 
 function preload() {
   img = loadImage('robo.png');
   batida = createAudio('batida.wav')
+  robotstart = createAudio('robotstart.wav')
+  robotstart.onended(sayDone);
 }
 
 function setup() {
@@ -36,6 +34,10 @@ function setup() {
   //Conexão com o servidor
   socket = io.connect('https://back-2.mateusvgarcia.repl.co')
   socket.on('coordenadas', robo);
+
+  robotstart.play()
+  robotstart.volume(0.15)
+
   //giroscopio
   gyro.frequency = 10;
   gyro.startTracking(function(o) {
@@ -193,7 +195,7 @@ function robo(pessoas){
 
 
 
-function draw() { 
+function draw() {
   if(forceX === 0 && forceY === 0){
     rectMode(RADIUS);
     imageMode(CENTER);
@@ -209,6 +211,7 @@ function draw() {
       corb: rgb.b
     }
     socket.emit('coordenadas', total)
+
     if (keyIsPressed === true) {
       if (keyCode === UP_ARROW) {
         clienty= clienty - velocidade
@@ -236,7 +239,6 @@ function draw() {
         }
         
       }
-
     } 
     
   
@@ -246,41 +248,44 @@ function draw() {
       image(img,robos[j].x,robos[j].y,tamanhorobo,tamanhorobo);
     }
 
+    if(start == true) {
+      for (let k = 0; k < qtdrobo; k++) {
+        if (robos[k].x + 1 < destinorobos[k].x) {
+          robos[k].x = robos[k].x + 1
+        } else if (robos[k].x - 1 > destinorobos[k].x) {
+          robos[k].x = robos[k].x - 1
+        } else {
+          verdfalse[k].x = true
+        }
 
-    for(let k = 0;k<qtdrobo;k++){
-      if(robos[k].x + 1<destinorobos[k].x){
-        robos[k].x = robos[k].x + 1
-      }else if(robos[k].x-1>destinorobos[k].x){
-        robos[k].x = robos[k].x - 1
-      }else{
-        verdfalse[k].x = true
-      }
+        if (robos[k].y + 1 < destinorobos[k].y) {
+          robos[k].y = robos[k].y + 1
+        } else if (robos[k].y > destinorobos[k].y) {
+          robos[k].y = robos[k].y - 1
+        } else {
+          verdfalse[k].y = true
+        }
 
-      if(robos[k].y + 1<destinorobos[k].y){
-        robos[k].y = robos[k].y + 1
-      }else if(robos[k].y>destinorobos[k].y){
-        robos[k].y = robos[k].y - 1
-      }else{
-        verdfalse[k].y = true
-      }
-      if(verdfalse[k].x == true && verdfalse[k].y == true){
-        destinorobos[k].x = random(0,windowWidth-40)
-        destinorobos[k].y = random(0,windowHeight-40)
-        verdfalse[k].x = false
-        verdfalse[k].y = false
-      }
 
-      for(let m=0;m<qtdrobo;m++){
-        distancia = dist(robos[k].x,robos[k].y,robos[m].x,robos[m].y)
-        if(distancia < 35 && distancia != 0){        
-          destinorobos[m].x = random(0,windowWidth)
-          batida.play()
-          batida.volume(0.15)
-          destinorobos[m].y = random(0,windowHeight-60)
+        if (verdfalse[k].x == true && verdfalse[k].y == true) {
+          destinorobos[k].x = random(0, windowWidth - 40)
+          destinorobos[k].y = random(0, windowHeight - 40)
+          verdfalse[k].x = false
+          verdfalse[k].y = false
+        }
+
+        for (let m = 0; m < qtdrobo; m++) {
+          distancia = dist(robos[k].x, robos[k].y, robos[m].x, robos[m].y)
+          if (distancia < 35 && distancia != 0) {
+            destinorobos[m].x = random(0, windowWidth)
+            batida.play()
+            batida.volume(0.15)
+            destinorobos[m].y = random(0, windowHeight - 60)
+            destinorobos[k].y = random(0, windowHeight - 60)
+          }
         }
       }
     }
-  
       
   //TELEFONE  
   }else{
@@ -307,7 +312,6 @@ function draw() {
     fill(0)
     circle(windowWidth/2+velox*100,windowHeight/2+veloy*100,100)
 
- 
 
     total = {
       x: xcel,
@@ -325,4 +329,8 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function sayDone(robotstart) {
+  start = true
 }
