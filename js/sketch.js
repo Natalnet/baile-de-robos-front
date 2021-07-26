@@ -36,15 +36,15 @@ let musicanum
 let trigger2 = true
 
 function preload() {
-  img = loadImage('robo.png');
+  img = loadImage('scr/img/robo.png');
   batida = createAudio('batida.wav')
 
-  musica1 = createAudio('musica1.wav')
-  musica2 = createAudio('musica2.wav')
-  musica3 = createAudio('musica3.wav')
+  musica1 = createAudio('scr/music/musica1.wav')
+  musica2 = createAudio('scr/music/musica2.wav')
+  musica3 = createAudio('scr/music/musica3.wav')
 
 
-  robotstart = createAudio('robotstart.wav')
+  robotstart = createAudio('scr/music/robotstart.wav')
   robotstart.onended(sayDone);
 }
 
@@ -53,23 +53,20 @@ function setup() {
 
 
 
-  brasil = createImg('brasil.png')
+  brasil = createImg('scr/img/brasil.png')
   brasil.position(windowWidth/2 - 180, windowHeight/2)
   brasil.size(flagsizex,flagsizey)
   brasil.mousePressed(messagebr);
 
-  espanha = createImg('espanha.jpg')
+  espanha = createImg('scr/img//espanha.jpg')
   espanha.position(windowWidth/2-30, windowHeight/2)
   espanha.size(flagsizex,flagsizey)
   espanha.mousePressed(messagees);
 
-  franca = createImg('franca.png')
+  franca = createImg('scr/img//franca.png')
   franca.position(windowWidth/2 + 120, windowHeight/2)
   franca.size(flagsizex,flagsizey)
   franca.mousePressed(messagefr);
-
-
-
 
 
 
