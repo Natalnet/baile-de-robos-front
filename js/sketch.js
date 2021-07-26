@@ -37,7 +37,7 @@ let trigger2 = true
 
 function preload() {
   img = loadImage('scr/img/robo.png');
-  batida = createAudio('batida.wav')
+  batida = createAudio('scr/music/batida.wav')
 
   musica1 = createAudio('scr/music/musica1.wav')
   musica2 = createAudio('scr/music/musica2.wav')
@@ -230,7 +230,9 @@ function robo(pessoas){
 
 
 
-
+trigger1 = true
+trigger = true
+menu = true
 
 function draw() {
   if(menu) {
