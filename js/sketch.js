@@ -49,8 +49,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-
+  let renderer = createCanvas(windowWidth, windowHeight);
+  renderer.parent("square");
 
 
   brasil = createImg('scr/img/brasil.png')
@@ -229,10 +229,6 @@ function robo(pessoas){
 
 
 
-
-trigger1 = true
-trigger = true
-menu = true
 
 function draw() {
   if(menu) {
